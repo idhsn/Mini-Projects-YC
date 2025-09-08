@@ -3,7 +3,6 @@
 
 #define MAX_ATTEMPTS 6
 
-// Assume gotoxy is defined somewhere
 
 int main() {
     char secretWord[] = "youcode", guess, *guessedWord;
@@ -27,14 +26,12 @@ int main() {
     gotoxy(1, 9);     printf("+-----------------------------------+");
 
     while (attemptsLeft > 0 && lettersFound < length) {
-        gotoxy(3, gotcount + 1);
-        printf("Word : ");
+        gotoxy(3, gotcount + 1);printf("Word : ");
         for (i = 0; i < length; i++) {
             printf("%c ", guessedWord[i]);
         }
 
-        gotoxy(3, gotcount + 3);
-        printf("Enter a letter : ");
+        gotoxy(3, gotcount + 3);printf("Enter a letter : ");
         scanf(" %c", &guess);
 
         correct = 0;
@@ -74,10 +71,8 @@ int main() {
                     break;
             }
         }
-        gotoxy(1, attemptsLeft + 9);
     }
 
-    gotoxy(1, attemptsLeft + 10);
     if (lettersFound == length) {
         gotoxy(3, gotcount + 5);printf("You won! The word was: %s\n", secretWord);
     } else {
