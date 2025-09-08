@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_ATTEMPTS 6
-
-
 int main() {
     char secretWord[] = "youcode", guess, *guessedWord;
-    int length = 7, attemptsLeft = MAX_ATTEMPTS, lettersFound = 0, i, correct, gotcount = 3;
+
+    int length = 7, attemptsLeft = 6, lettersFound = 0, i, correct, gotcount = 3;
 
     guessedWord = malloc(length + 1);
 
@@ -43,7 +41,7 @@ int main() {
             }
         }
 
-        if (correct) {
+        if (correct == 1) {
             gotoxy(3, gotcount + 5);printf("Correct!                    ");
         } else {
             attemptsLeft--;
