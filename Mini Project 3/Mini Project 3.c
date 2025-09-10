@@ -108,6 +108,7 @@ int main()
     char Name[25], question[256];
     char stock_ex[256];
     char *ex = "exit";
+    char *trig[20] = {"sad", "sympathy", "angry", "frustration", "happy", "joy", "confused", "uncertainty", "fear", "anxiety", "gratitude", "appreciation", "curiosity", "interest", "love", "affection", "humor", "playfulness", "hi","hello"};
 
     srand(time(NULL));
 
@@ -174,17 +175,17 @@ Draw:
             if (ft_strstr(stock_ex, trig[f]) == 1)
             {
                 gotoxy(4, shifting);
-                printf("Bot : %s%s", all_answers[f][random_index], all_questions[f][random_index]);
+                printf("Gri3a : %s%s", all_answers[f][random_index], all_questions[f][random_index]);
 
                 if (history_count < MAX_HISTORY_LINES)
                 {
                     char temp[300];
-                    snprintf(temp, sizeof(temp), "Bot : %s%s", all_answers[f][random_index], all_questions[f][random_index]);
+                    snprintf(temp, sizeof(temp), "Gri3a : %s%s", all_answers[f][random_index], all_questions[f][random_index]);
                     snprintf(history[history_count++], MAX_LINE_LEN, "%s", temp);
                 }
 
-                shifting += 2;
-                linecount += 2;
+                shifting++;
+                linecount++;
                 matched = 1;
                 break;
             }
@@ -194,11 +195,11 @@ Draw:
         if (!matched)
         {
             gotoxy(4, shifting);
-            printf("Bot : I didn't understand, could you please clarify?\n");
+            printf("Gri3a : I didn't understand, could you please clarify?");
 
             // Save to history
             if (history_count < MAX_HISTORY_LINES)
-                snprintf(history[history_count++], MAX_LINE_LEN, "Bot : I didn't understand, could you please clarify?");
+                printf(history[history_count++], MAX_LINE_LEN, "Gri3a : I didn't understand, could you please clarify?");
 
             shifting++;
             linecount++;
