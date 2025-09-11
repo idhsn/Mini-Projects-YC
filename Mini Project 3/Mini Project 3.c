@@ -3,7 +3,7 @@
 #include <time.h>
 #include "trig.h"
 
-#define MAX_HISTORY 10
+#define MAX_HISTORY 7
 #define MAX_LINE 256
 
 int st_cmp(char *s1, char *s2);
