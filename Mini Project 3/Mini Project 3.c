@@ -104,7 +104,6 @@ int main()
     char *ex = "exit";
     char *trig[20] = {"sad", "sympathy", "angry", "frustration", "happy", "joy", "confused", "uncertainty", "fear", "anxiety", "gratitude", "appreciation", "curiosity", "interest", "love", "affection", "humor", "playfulness", "hi","hello"};
 
-    // new history system (from code 2)
     char human_history[MAX_HISTORY][MAX_LINE];
     char bot_history[MAX_HISTORY][MAX_LINE];
     int human_count = 0, bot_count = 0;
