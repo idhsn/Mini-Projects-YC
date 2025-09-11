@@ -3,11 +3,8 @@
 #include <time.h>
 #include "trig.h"
 
-#define MAX_HISTORY_LINES 10
-#define MAX_LINE_LEN 256
-
-char history[MAX_HISTORY_LINES][MAX_LINE_LEN];
-int history_count = 0;
+#define MAX_HISTORY 10
+#define MAX_LINE 256
 
 int st_cmp(char *s1, char *s2);
 int str_len(char *str);
@@ -100,15 +97,17 @@ void draw_box()
     gotoxy(34, 2);  printf(" CHAT BOT GRIII3AAA ");
 }
 
-
 int main()
 {
-
-    int i, shifting = 4, linecount = 0, len, f, matched, random_index;
-    char Name[25], question[256];
-    char stock_ex[256];
+    int i, shifting = 4, linecount = 0, f, matched, random_index;
+    char Name[25], question[256], stock_ex[256], reply[256];
     char *ex = "exit";
     char *trig[20] = {"sad", "sympathy", "angry", "frustration", "happy", "joy", "confused", "uncertainty", "fear", "anxiety", "gratitude", "appreciation", "curiosity", "interest", "love", "affection", "humor", "playfulness", "hi","hello"};
+
+    // new history system (from code 2)
+    char human_history[MAX_HISTORY][MAX_LINE];
+    char bot_history[MAX_HISTORY][MAX_LINE];
+    int human_count = 0, bot_count = 0;
 
     srand(time(NULL));
 
@@ -128,12 +127,10 @@ Draw:
         gotoxy(21, 19);
         fgets(question, sizeof(question), stdin);
 
-        len = str_len(question);
-        if (len > 0 && question[len - 1] == '\n')
-            question[len - 1] = '\0';
+        question[strcspn(question, "\n")] = '\0';
+
 
         str_copy(question, stock_ex);
-
 
         if (st_cmp(stock_ex, ex) == 0)
         {
@@ -141,14 +138,14 @@ Draw:
             break;
         }
 
-
         if (st_cmp(stock_ex, "history") == 0)
         {
             system("cls");
             draw_box();
-            for (i = 0; i < history_count; i++)
+            for (i = 0; i < human_count; i++)
             {
-                gotoxy(4, 4 + i); printf("%s", history[i]);
+                gotoxy(4, 4 + i * 2); printf("%s : %s", Name, human_history[i]);
+                gotoxy(4, 5 + i * 2); printf("Gri3a : %s", bot_history[i]);
             }
             gotoxy(4, 19); printf("Press Enter to continue...");
             getchar();
@@ -163,8 +160,11 @@ Draw:
         shifting++;
         linecount++;
 
-        if (history_count < MAX_HISTORY_LINES)
-            snprintf(history[history_count++], MAX_LINE_LEN, "%s : %s", Name, stock_ex);
+        if (human_count < MAX_HISTORY)
+        {
+            str_copy(stock_ex, human_history[human_count]);
+            human_count++;
+        }
 
         f = 0;
         matched = 0;
@@ -174,14 +174,14 @@ Draw:
         {
             if (ft_strstr(stock_ex, trig[f]) == 1)
             {
+                sprintf(reply, "%s%s", all_answers[f][random_index], all_questions[f][random_index]);
                 gotoxy(4, shifting);
-                printf("Gri3a : %s%s", all_answers[f][random_index], all_questions[f][random_index]);
+                printf("Gri3a : %s", reply);
 
-                if (history_count < MAX_HISTORY_LINES)
+                if (bot_count < MAX_HISTORY)
                 {
-                    char temp[300];
-                    snprintf(temp, sizeof(temp), "Gri3a : %s%s", all_answers[f][random_index], all_questions[f][random_index]);
-                    snprintf(history[history_count++], MAX_LINE_LEN, "%s", temp);
+                    str_copy(reply, bot_history[bot_count]);
+                    bot_count++;
                 }
 
                 shifting++;
@@ -194,12 +194,15 @@ Draw:
 
         if (!matched)
         {
+            sprintf(reply, "I didn't understand, could you please clarify?");
             gotoxy(4, shifting);
-            printf("Gri3a : I didn't understand, could you please clarify?");
+            printf("Gri3a : %s", reply);
 
-            // Save to history
-            if (history_count < MAX_HISTORY_LINES)
-                printf(history[history_count++], MAX_LINE_LEN, "Gri3a : I didn't understand, could you please clarify?");
+            if (bot_count < MAX_HISTORY)
+            {
+                str_copy(reply, bot_history[bot_count]);
+                bot_count++;
+            }
 
             shifting++;
             linecount++;
