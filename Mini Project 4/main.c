@@ -13,7 +13,7 @@ int main() {
         gotoxy(28,11); printf("3. Add Course");
         gotoxy(28,13); printf("4. Display Courses");
         gotoxy(28,15); printf("5. Search Student By ID");
-        gotoxy(28,17); printf("6. Modify Course Grade");
+        gotoxy(28,17); printf("6. Modify Student Average");
         gotoxy(28,19); printf("0. Exit");
         gotoxy(3,22);   printf("Choose an option : ");
         gotoxy(22,22);  scanf("%d", &choice);

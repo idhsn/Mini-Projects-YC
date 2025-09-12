@@ -32,47 +32,58 @@ struct Course courses[MAX_COURSES];
 int courseCount = 0;
 
 void addStudent() {
+    int i;
     if (studentCount >= MAX_STUDENTS) {
         gotoxy(23,4); printf("Max number of students reached");
         gotoxy(3,22);printf("Press Enter to continue ...");
         getchar();
         return;
     }else{
-    struct Student s;
+        struct Student s;
 
-    gotoxy(3,22); printf("Enter The Values :                                                        ");
+        gotoxy(3,22); printf("Enter The Values :                                                        ");
 
-    gotoxy(20,7);  printf("Enter student ID : ");
-    gotoxy(22,22); scanf("%d", &s.id);
-    gotoxy(22,22); printf("                                                       ");
-    gotoxy(40,7);  printf("%d", s.id);
+        gotoxy(20,7);  printf("Enter student ID : ");
+        gotoxy(22,22); scanf("%d", &s.id);
+        gotoxy(22,22); printf("                                                       ");
+        gotoxy(40,7);  printf("%d", s.id);
 
-    gotoxy(20,9);  printf("Enter last name : ");
-    gotoxy(22,22); scanf("%s", s.lastName);
-    gotoxy(22,22); printf("                                                       ");
-    gotoxy(40,9);  printf("%s", s.lastName);
+        for ( i = 0; i < studentCount; i++) {
+            if (s.id == students[i].id) {
+                gotoxy(22,4); printf("student with ID %d already exists", s.id);
+                gotoxy(3,22); printf("Press Enter to continue ...");
+                getchar();
+                getchar();
+                return;
+            }
+        }
 
-    gotoxy(20,11); printf("Enter first name : ");
-    gotoxy(22,22); scanf("%s", s.firstName);
-    gotoxy(22,22); printf("                                                       ");
-    gotoxy(40,11); printf("%s", s.firstName);
+        gotoxy(20,9);  printf("Enter last name : ");
+        gotoxy(22,22); scanf("%s", s.lastName);
+        gotoxy(22,22); printf("                                                       ");
+        gotoxy(40,9);  printf("%s", s.lastName);
 
-    gotoxy(20,13); printf("Enter age : ");
-    gotoxy(22,22); scanf("%d", &s.age);
-    gotoxy(22,22); printf("                                                       ");
-    gotoxy(40,13); printf("%d", s.age);
+        gotoxy(20,11); printf("Enter first name : ");
+        gotoxy(22,22); scanf("%s", s.firstName);
+        gotoxy(22,22); printf("                                                       ");
+        gotoxy(40,11); printf("%s", s.firstName);
 
-    gotoxy(20,15); printf("Enter average grade : ");
-    gotoxy(22,22); scanf("%f", &s.average);
-    gotoxy(22,22); printf("                                                       ");
-    gotoxy(40,15); printf("%.2f", s.average);
+        gotoxy(20,13); printf("Enter age : ");
+        gotoxy(22,22); scanf("%d", &s.age);
+        gotoxy(22,22); printf("                                                       ");
+        gotoxy(40,13); printf("%d", s.age);
 
-    students[studentCount] = s;
-    studentCount++;
-    gotoxy(25,4);  printf("Student added successfully");
-    gotoxy(3,22);  printf("Press Enter to continue ...");
-    getchar();
-    getchar();
+        gotoxy(20,15); printf("Enter average grade : ");
+        gotoxy(22,22); scanf("%f", &s.average);
+        gotoxy(22,22); printf("                                                       ");
+        gotoxy(40,15); printf("%.2f", s.average);
+
+        students[studentCount] = s;
+        studentCount++;
+        gotoxy(25,4);  printf("Student added successfully");
+        gotoxy(3,22);  printf("Press Enter to continue ...");
+        getchar();
+        getchar();
 
     }
 }
@@ -96,44 +107,56 @@ void displayStudents() {
 }
 
 void addCourse() {
+    int i;
     if (courseCount >= MAX_COURSES) {
         gotoxy(23,4); printf("Max number of courses reached");
         gotoxy(3,22);printf("Press Enter to continue ...");
         getchar();
         return;
-    }else{
-    struct Course c;
+    } else {
+        struct Course c;
 
-    gotoxy(3,22);printf("Enter The Values :                                                        ");
+        gotoxy(3,22);printf("Enter The Values :                                                        ");
 
-    gotoxy(20,7);printf("Enter course code : ");
-    gotoxy(22,22);scanf("%s", c.code);
-    gotoxy(22,22); printf("                                                       ");
-    gotoxy(40,7);printf("%s",c.code );
+        gotoxy(20,7);printf("Enter course code : ");
+        gotoxy(22,22);scanf("%s", c.code);
+        gotoxy(22,22); printf("                                                       ");
+        gotoxy(40,7);printf("%s", c.code);
 
-    gotoxy(20,9);printf("Enter course name : ");
-    gotoxy(22,22);scanf(" %s", c.name);
-    gotoxy(22,22); printf("                                                       ");
-    gotoxy(40,9);printf("%s",c.name);
+        for (i = 0; i < courseCount; i++) {
+            if (strcmp(c.code, courses[i].code) == 0) {
+                gotoxy(22,4); printf("course with code %s already exists", c.code);
+                gotoxy(3,22); printf("Press Enter to continue ...");
+                getchar();
+                getchar();
+                return;
+            }
+        }
 
-    gotoxy(20,11);printf("Enter credits : ");
-    gotoxy(22,22);scanf("%d", &c.credits);
-    gotoxy(22,22); printf("                                                       ");
-    gotoxy(40,11);printf("%d",c.credits);
+        gotoxy(20,9);printf("Enter course name : ");
+        gotoxy(22,22);scanf(" %s", c.name);
+        gotoxy(22,22); printf("                                                       ");
+        gotoxy(40,9);printf("%s", c.name);
 
-    gotoxy(20,13);printf("Enter grade : ");
-    gotoxy(22,22);scanf("%f", &c.grade);
-    gotoxy(22,22);printf("                                                       ");
-    gotoxy(40,13);printf("%.2f",c.grade);
+        gotoxy(20,11);printf("Enter credits : ");
+        gotoxy(22,22);scanf("%d", &c.credits);
+        gotoxy(22,22); printf("                                                       ");
+        gotoxy(40,11);printf("%d", c.credits);
 
-    courses[courseCount] = c;
-    courseCount++;
-    gotoxy(25,4);printf("Course added successfully!");
-    gotoxy(3,22);printf("Press Enter to continue ...");
-    getchar();
-    getchar();
+        gotoxy(20,13);printf("Enter grade : ");
+        gotoxy(22,22);scanf("%f", &c.grade);
+        gotoxy(22,22);printf("                                                       ");
+        gotoxy(40,13);printf("%.2f", c.grade);
+
+        courses[courseCount] = c;
+        courseCount++;
+        gotoxy(25,4);printf("Course added successfully!");
+        gotoxy(3,22);printf("Press Enter to continue ...");
+        getchar();
+        getchar();
     }
 }
+
 
 void displayCourses() {
     int i;
@@ -180,8 +203,8 @@ void modifyCourseGrade() {
     float newGrade;
 
     gotoxy(3,22);
-    printf("Enter student ID to modify grade:                                                    ");
-    gotoxy(39,22);
+    printf("Enter student ID to modify grade : ");
+    gotoxy(38,22);
     scanf("%d", &id);
 
     for (i = 0; i < studentCount; i++) {
@@ -193,7 +216,7 @@ void modifyCourseGrade() {
                    students[i].firstName, students[i].lastName, students[i].average);
 
             gotoxy(3,22);
-            printf("Enter new average grade:                                                             ");
+            printf("Enter new average grade :                                                             ");
             gotoxy(28,22);
             scanf("%f", &newGrade);
 
@@ -205,13 +228,14 @@ void modifyCourseGrade() {
         }
     }
 
-    if (found == 0) {
+    if (!found) {
         gotoxy(10,6);
         printf("Student with ID %d not found.", id);
     }
 
+    gotoxy(22,22); printf("                                                    ");
     gotoxy(3,22);
-    printf("Press Enter to continue...              ");
+    printf("Press Enter to continue...");
     getchar(); getchar();
 
 }
@@ -230,7 +254,7 @@ void draw_box()
         gotoxy(i, 23);  printf("%c", 205);  // bottom
     }
 
-    for (i = 2; i <= 22; i++)  // updated from 18 -> 22
+    for (i = 2; i <= 22; i++)
     {
         gotoxy(1, i);   printf("%c", 186);   // left
         gotoxy(75, i);  printf("%c", 186);   // right
@@ -241,7 +265,6 @@ void draw_box()
         gotoxy(i, 5);   printf("%c", 205);   // search thingy
     }
 
-    // Corners and joints
     gotoxy(1, 1);    printf("%c", 201);     // top left
     gotoxy(75, 1);   printf("%c", 187);     // top right
     gotoxy(1, 3);    printf("%c", 204);     // middle top left
