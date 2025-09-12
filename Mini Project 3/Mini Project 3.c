@@ -125,7 +125,7 @@ Draw:
         gotoxy(4, 19); printf("Ask a question :                                                                   ");
         gotoxy(21, 19);
         fgets(question, sizeof(question), stdin);
-
+c bz-*
         question[strcspn(question, "\n")] = '\0';
 
 
