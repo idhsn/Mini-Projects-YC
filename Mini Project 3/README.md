@@ -30,14 +30,23 @@ The chatbot can:
 ## 🔹 Example Interaction
 
 You: Hello, I am feeling happy
+
 Bot: Hi! Great to hear that! 😊
+
 You: I am sad today
+
 Bot: Oh no! Hope things get better soon.
+
 You: Can you help me?
+
 Bot: Sure! What do you want to talk about?
+
 You: show history
+
 Bot:
 1) You: Hello, I am feeling happy -> Bot: Hi! Great to hear that! 😊
 2) You: I am sad today -> Bot: Oh no! Hope things get better soon.
+
 You: exit
+
 Bot: Goodbye!
