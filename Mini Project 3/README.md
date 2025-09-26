@@ -50,3 +50,11 @@ Bot:
 You: exit
 
 Bot: Goodbye!
+
+---
+
+## 💡 Tips & Notes  
+- Run **Borland C** in compatibility mode if needed.  
+- Keep file paths simple to avoid compile errors.  
+- **trig(.h):** This project include a header file (`.h`). Make sure to include it in your editor or IDE so the compiler can locate it correctly.
+
