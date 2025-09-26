@@ -26,3 +26,11 @@ The goal is to provide a simple solution that allows the university administrato
 4. Display the list of available courses.  
 5. Search for a student by ID (**Bonus**).  
 6. Modify the grade of an existing course (**Bonus**).
+
+---
+
+## 💡 Tips & Notes  
+- Run **Borland C** in compatibility mode if needed.  
+- Keep file paths simple to avoid compile errors.  
+- **uni(.h):** This project include a header file (`.h`). Make sure to include it in your editor or IDE so the compiler can locate it correctly.
+
